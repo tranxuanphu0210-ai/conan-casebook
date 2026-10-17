@@ -1,0 +1,701 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#17243A" />
+  <meta name="description" content="Conan Casebook — sổ vụ án tài chính cá nhân." />
+  <title>Conan Casebook — Sổ vụ án tài chính</title>
+  <link rel="icon" type="image/svg+xml" href="assets/conan-casebook-logo.svg" />
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="apple-touch-icon" href="assets/icon-192.png" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { theme: { extend: { colors: { casebook: { navy: '#17243A', cream: '#F7F5EF', gold: '#D5B56A', blue: '#6399B8' } } } };
+  </script>
+  <style>
+    :root { color-scheme: light; --navy:#17243A; --cream:#F7F5EF; --gold:#D5B56A; --blue:#6399B8; --ink:#202938; --muted:#697586; --line:#DFE3E8; }
+    * { box-sizing: border-box; }
+    html { background: var(--cream); }
+    body { margin:0; background:var(--cream); color:var(--ink); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    button, input, select { font: inherit; }
+    button { -webkit-tap-highlight-color: transparent; }
+    #app > div.min-h-screen { background:var(--cream)!important; color:var(--ink)!important; }
+    #app .max-w-3xl.mx-auto { max-width: 1040px!important; padding-top: 20px!important; }
+    #app .fixed.inset-0.pointer-events-none.z-0 { display:none!important; }
+    #app header h1 { color:var(--navy)!important; text-shadow:none!important; font-weight:800!important; letter-spacing:-.04em!important; }
+    #app header p { color:var(--muted)!important; }
+    #app header p span { color:var(--muted)!important; }
+    #app header button, #app header input { border:1px solid var(--line)!important; box-shadow:none!important; border-radius:12px!important; }
+    #app section { border-radius:20px!important; }
+    #app .max-w-3xl.mx-auto > section { box-shadow:0 5px 18px rgba(23,36,58,.055)!important; }
+    #app section.bg-\[\#FFFDF9\] { background:#fff!important; border:1px solid var(--line)!important; box-shadow:0 5px 18px rgba(23,36,58,.055)!important; }
+    #app section.bg-\[\#FFFDF9\] h2, #app section.bg-\[\#FFFDF9\] h3 { color:var(--navy)!important; }
+    #app .bg-\[\#FFFDF9\] { background:#fff!important; }
+    #app .border-slate-950, #app .border-slate-900 { border-color:var(--line)!important; }
+    #app [class*="shadow-["] { box-shadow:0 2px 8px rgba(23,36,58,.07)!important; }
+    #app .rounded-3xl, #app .rounded-2xl { border-radius:18px!important; }
+    #app .bg-gradient-to-br.from-\[\#090D16\] { background:var(--navy)!important; }
+    #app .bg-slate-950, #app .bg-slate-900 { background:var(--navy)!important; }
+    #app .text-rose-600, #app .text-rose-700 { color:#9B4553!important; }
+    #app .bg-rose-600, #app .bg-pink-600 { background:#9B4553!important; }
+    #app .border-rose-500, #app .border-rose-600 { border-color:#9B4553!important; }
+    #app .text-cyan-200, #app .text-cyan-300 { color:#BFD7E4!important; }
+    #app .bg-cyan-400 { background:var(--blue)!important; }
+    #app .text-amber-300, #app .text-amber-400 { color:var(--gold)!important; }
+    #app input:not([type="range"]), #app select { max-width:100%; }
+    #app input[type="text"], #app input[type="date"], #app input[type="month"] { border-radius:10px!important; border:1px solid #CBD2DA!important; box-shadow:none!important; }
+    #app button { transition: background-color .16s ease, color .16s ease, border-color .16s ease; }
+    #app button:focus-visible, #app input:focus-visible, #app select:focus-visible { outline:3px solid rgba(99,153,184,.5); outline-offset:2px; }
+    #app .fixed.inset-0.z-50 { background:rgba(23,36,58,.58)!important; }
+    #app .fixed.inset-0.z-50 > div { border:1px solid var(--line)!important; box-shadow:0 16px 50px rgba(23,36,58,.2)!important; }
+    @media (max-width:640px) {
+      #app .max-w-3xl.mx-auto { padding-left:14px!important; padding-right:14px!important; padding-top:14px!important; }
+      #app header { align-items:flex-start!important; }
+      #app header > div:last-child { width:100%; flex-wrap:wrap; }
+      #app header input[type="month"] { flex:1; min-width:145px; }
+      #app .text-3xl.sm\:text-5xl { font-size:clamp(1.8rem,8vw,2.6rem)!important; overflow-wrap:anywhere; }
+      #app .grid-cols-3 { grid-template-columns:1fr!important; text-align:left!important; }
+      #app .grid-cols-3 > div { border-left:0!important; border-right:0!important; padding:8px 0!important; }
+      #app .min-w-\[200px\] { min-width:0!important; }
+    }
+    @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
+  </style>
+</head>
+<body>
+  <div id="app"><div style="max-width:520px;margin:15vh auto;padding:24px;color:#17243A;font-family:system-ui;text-align:center">Đang mở Conan Casebook…</div></div>
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <script type="text/babel" data-presets="env,react">
+const { useState, useEffect, useMemo } = React;
+
+// ============================================================================
+// 1. HỆ THỐNG ÂM THANH SYNTHESIZER ANIME (WEB AUDIO API THUẦN)
+// ============================================================================
+const playGadgetSound = (type, enabled = true) => {
+  if (!enabled || typeof window === "undefined") return;
+  try {
+    if (navigator.vibrate) navigator.vibrate(35);
+    const AudioCtx = window.AudioContext || window.webkitAudioContext;
+    if (!AudioCtx) return;
+    const ctx = new AudioCtx();
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+
+    const now = ctx.currentTime;
+    if (type === "laser") {
+      // Tiếng bắn kim gây mê (khi ghi chi tiêu)
+      osc.type = "sawtooth";
+      osc.frequency.setValueAtTime(920, now);
+      osc.frequency.exponentialRampToValueAtTime(180, now + 0.16);
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.linearRampToValueAtTime(0.01, now + 0.16);
+      osc.start(now);
+      osc.stop(now + 0.16);
+    } else if (type === "coin") {
+      // Tiếng Kaito Kid / Nhận tiền
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(987.77, now);
+      osc.frequency.setValueAtTime(1318.51, now + 0.08);
+      gain.gain.setValueAtTime(0.18, now);
+      gain.gain.linearRampToValueAtTime(0.01, now + 0.25);
+      osc.start(now);
+      osc.stop(now + 0.25);
+    } else if (type === "radar") {
+      // Tiếng bíp kính ngắm Conan
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(1250, now);
+      gain.gain.setValueAtTime(0.12, now);
+      gain.gain.linearRampToValueAtTime(0.01, now + 0.07);
+      osc.start(now);
+      osc.stop(now + 0.07);
+    } else if (type === "alert") {
+      // Tiếng cảnh báo APTX-4869
+      osc.type = "square";
+      osc.frequency.setValueAtTime(320, now);
+      osc.frequency.setValueAtTime(220, now + 0.12);
+      gain.gain.setValueAtTime(0.15, now);
+      gain.gain.linearRampToValueAtTime(0.01, now + 0.28);
+      osc.start(now);
+      osc.stop(now + 0.28);
+    }
+  } catch (e) {
+    // Bỏ qua nếu trình duyệt chặn autoplay
+  }
+};
+
+// ============================================================================
+// 2. HÀM ĐỊNH DẠNG TIỀN TỆ TỰ ĐỘNG (1.000.000) & PARSE SỐ
+// ============================================================================
+const formatVND = (num, hidden = false) => {
+  if (hidden) return "•••••••• ₫";
+  const n = Number(num) || 0;
+  return n.toLocaleString("vi-VN") + " ₫";
+};
+
+const formatInputDots = (val) => {
+  if (val === undefined || val === null || val === "") return "";
+  const digits = String(val).replace(/\D/g, "");
+  if (!digits) return "";
+  return Number(digits).toLocaleString("vi-VN");
+};
+
+const parseInputDots = (str) => {
+  if (!str) return 0;
+  const digits = String(str).replace(/\D/g, "");
+  return digits ? parseInt(digits, 10) : 0;
+};
+
+// ============================================================================
+// 3. BỘ SƯU TẬP LOGO & 8 CÔNG CỤ CONAN (SVG ĐA LỚP HÌNH DÁNG TỰ DO)
+// ============================================================================
+
+// LOGO HEADER: biểu tượng hồ sơ và kính lúp Conan Casebook
+const ConanBowtieLogo = ({ onClick }) => (
+  <svg onClick={onClick} viewBox="0 0 96 96" role="img" aria-label="Conan Casebook" className="w-16 h-16 sm:w-20 sm:h-20 shrink-0 cursor-pointer">
+    <rect x="8" y="8" width="62" height="74" rx="10" fill="#F7F5EF" stroke="#17243A" strokeWidth="5" />
+    <path d="M22 27 H55 M22 39 H48 M22 51 H42" stroke="#D5B56A" strokeWidth="5" strokeLinecap="round" />
+    <circle cx="60" cy="58" r="19" fill="#6399B8" stroke="#17243A" strokeWidth="6" />
+    <circle cx="60" cy="58" r="10" fill="#F7F5EF" />
+    <path d="M73 72 L87 86" stroke="#D5B56A" strokeWidth="9" strokeLinecap="round" />
+    <path d="M73 72 L87 86" stroke="#17243A" strokeWidth="3" strokeLinecap="round" />
+  </svg>
+);
+
+// BẢO BỐI 1: Đồng Hồ Bắn Kim Gây Mê (Thêm giao dịch)
+const GadgetWatchSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[3px_4px_0px_#090D16]">
+    <path d="M50 4 L60 22 L82 12 L72 34 L94 44 L74 56 L86 78 L64 72 L54 94 L42 74 L18 84 L28 60 L6 50 L28 38 L16 16 L40 24 Z" fill="#FFE4E6" stroke="#F43F5E" strokeWidth="2.5" strokeLinejoin="round" />
+    <rect x="38" y="8" width="24" height="84" rx="7" fill="#334155" stroke="#090D16" strokeWidth="3.5" />
+    <path d="M42 14 H58 M42 82 H58" stroke="#94A3B8" strokeWidth="3" strokeLinecap="round" />
+    <circle cx="50" cy="25" r="19" fill="#E0F2FE" fillOpacity="0.92" stroke="#090D16" strokeWidth="3.5" />
+    <circle cx="50" cy="25" r="12" stroke="#EF4444" strokeWidth="2" strokeDasharray="3 2" fill="none" />
+    <circle cx="50" cy="25" r="3.5" fill="#EF4444" />
+    <path d="M50 9 V41 M34 25 H66" stroke="#EF4444" strokeWidth="2" />
+    <rect x="41" y="40" width="18" height="6" rx="2" fill="#CBD5E1" stroke="#090D16" strokeWidth="2.5" />
+    <circle cx="50" cy="60" r="23" fill="#CBD5E1" stroke="#090D16" strokeWidth="3.5" />
+    <circle cx="50" cy="60" r="17" fill="#0F172A" stroke="#090D16" strokeWidth="2.5" />
+    <path d="M50 50 V70 M40 60 H60" stroke="#22C55E" strokeWidth="5" strokeLinecap="round" />
+    <rect x="73" y="54" width="9" height="12" rx="3" fill="#FF2A5F" stroke="#090D16" strokeWidth="3" />
+  </svg>
+);
+
+// BẢO BỐI 2: Mắt Kính Dò Tìm Radar (Phân tích chi tiêu)
+const GadgetGlassesSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[3px_4px_0px_#090D16]">
+    <ellipse cx="50" cy="52" rx="44" ry="28" transform="rotate(-12 50 52)" fill="#CCFBF1" stroke="#0D9488" strokeWidth="2.5" strokeDasharray="6 3" />
+    <path d="M8 44 L26 20 M92 44 L74 20" stroke="#090D16" strokeWidth="4.5" strokeLinecap="round" />
+    <rect x="4" y="38" width="6" height="16" rx="2" fill="#FACC15" stroke="#090D16" strokeWidth="2.5" />
+    <rect x="8" y="38" width="38" height="30" rx="7" fill="#0F172A" stroke="#090D16" strokeWidth="4" />
+    <circle cx="27" cy="53" r="10" fill="#38BDF8" />
+    <path d="M27 53 L27 43 A10 10 0 0 1 37 53 Z" fill="#F43F5E" />
+    <path d="M27 53 L37 53 A10 10 0 0 1 27 63 Z" fill="#FACC15" />
+    <path d="M46 49 Q50 44 54 49" stroke="#090D16" strokeWidth="4.5" fill="none" />
+    <rect x="54" y="38" width="38" height="30" rx="7" fill="#064E3B" stroke="#090D16" strokeWidth="4" />
+    <circle cx="73" cy="53" r="10" stroke="#34D399" strokeWidth="2" fill="none" />
+    <path d="M73 41 V65 M61 53 H85" stroke="#34D399" strokeWidth="1.5" />
+    <circle cx="77" cy="49" r="2.5" fill="#EF4444" />
+    <path d="M58 42 L66 62" stroke="#FFFFFF" strokeWidth="3.5" strokeLinecap="round" opacity="0.75" />
+  </svg>
+);
+
+// BẢO BỐI 3: Mũ Ảo Thuật Kaito Kid (Nguồn thu)
+const KaitoKidHatSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[3px_4px_0px_#090D16]">
+    <circle cx="48" cy="48" r="37" fill="#FEF08A" stroke="#F59E0B" strokeWidth="2.5" />
+    <g transform="rotate(18 68 28)">
+      <rect x="54" y="10" width="26" height="34" rx="3" fill="#FFFFFF" stroke="#090D16" strokeWidth="3" />
+      <path d="M67 20 L72 27 L67 34 L62 27 Z" fill="#E11D48" />
+    </g>
+    <path d="M24 26 H72 L68 65 H28 Z" fill="#FFFFFF" stroke="#090D16" strokeWidth="3.5" strokeLinejoin="round" />
+    <path d="M26 28 H38 L36 63 H29 Z" fill="#E2E8F0" />
+    <rect x="27" y="52" width="42" height="11" fill="#2563EB" stroke="#090D16" strokeWidth="3" />
+    <path d="M10 65 Q48 74 86 65 Q48 58 10 65 Z" fill="#FFFFFF" stroke="#090D16" strokeWidth="3.5" />
+    <circle cx="65" cy="57" r="10.5" fill="#E0F2FE" fillOpacity="0.92" stroke="#090D16" strokeWidth="3" />
+    <path d="M65 67.5 V84 L56 89" stroke="#F59E0B" strokeWidth="3" strokeLinecap="round" fill="none" />
+    <circle cx="56" cy="89" r="3" fill="#22C55E" stroke="#090D16" strokeWidth="1.5" />
+  </svg>
+);
+
+// BẢO BỐI 4: Giày Tăng Cường Sức Đá (Hạn mức ngân sách)
+const PowerShoesSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[3px_4px_0px_#090D16]">
+    <path d="M14 48 L26 16 L48 28 L74 10 L70 38 L92 48 L68 64 L78 86 L48 74 L22 88 L28 62 Z" fill="#E0F2FE" stroke="#0284C7" strokeWidth="2.5" strokeLinejoin="round" />
+    <path d="M18 36 H46 L58 50 L82 54 C88 56, 90 64, 86 71 H16 C12 71, 12 60, 14 50 Z" fill="#E11D48" stroke="#090D16" strokeWidth="3.5" strokeLinejoin="round" />
+    <path d="M70 52 C84 54, 88 62, 86 71 H68 Z" fill="#FFFFFF" stroke="#090D16" strokeWidth="3" />
+    <rect x="14" y="67" width="74" height="9" rx="4.5" fill="#FFFFFF" stroke="#090D16" strokeWidth="3" />
+    <path d="M20 71.5 H82" stroke="#94A3B8" strokeWidth="2" strokeDasharray="4 3" />
+    <circle cx="34" cy="54" r="7.5" fill="#FACC15" stroke="#090D16" strokeWidth="3" />
+    <circle cx="34" cy="54" r="2.5" fill="#090D16" />
+    <path d="M48 12 L36 32 H50 L38 50 M78 22 L64 38 H76 L62 56" stroke="#00F0FF" strokeWidth="4" strokeLinecap="round" strokeLinejoin="round" />
+  </svg>
+);
+
+// BẢO BỐI 5: Ván Trượt Động Cơ Mặt Trời (Mục tiêu tiết kiệm)
+const TurboSkateboardSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[3px_4px_0px_#090D16]">
+    <circle cx="52" cy="50" r="36" fill="#FEF3C7" stroke="#F59E0B" strokeWidth="2.5" strokeDasharray="8 4" />
+    <path d="M6 28 H42 M4 44 H30" stroke="#38BDF8" strokeWidth="3.5" strokeLinecap="round" />
+    <path d="M28 56 L4 66 L18 74 L6 84 L36 74 Z" fill="#FF2A5F" stroke="#090D16" strokeWidth="3" strokeLinejoin="round" />
+    <path d="M28 60 L12 67 L22 72 L32 70 Z" fill="#FACC15" />
+    <g transform="rotate(-18 54 50)">
+      <rect x="14" y="40" width="74" height="16" rx="8" fill="#FACC15" stroke="#090D16" strokeWidth="3.5" />
+      <path d="M28 40 H74 L68 56 H34 Z" fill="#E11D48" stroke="#090D16" strokeWidth="2.5" />
+      <rect x="38" y="56" width="26" height="9" rx="3" fill="#475569" stroke="#090D16" strokeWidth="3" />
+      <circle cx="28" cy="65" r="8.5" fill="#0F172A" stroke="#090D16" strokeWidth="3" />
+      <circle cx="28" cy="65" r="3.5" fill="#38BDF8" />
+      <circle cx="74" cy="65" r="8.5" fill="#0F172A" stroke="#090D16" strokeWidth="3" />
+      <circle cx="74" cy="65" r="3.5" fill="#38BDF8" />
+    </g>
+  </svg>
+);
+
+// BẢO BỐI 6: Hồ Sơ Vụ Án Tuyệt Mật & Kính Lúp (Hồ sơ giao dịch)
+const CaseFileSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[3px_4px_0px_#090D16]">
+    <circle cx="48" cy="34" r="24" fill="#EDE9FE" stroke="#7C3AED" strokeWidth="2.5" />
+    <path d="M35 52 L26 88 H70 L61 52 Z" fill="#EDE9FE" stroke="#7C3AED" strokeWidth="2.5" strokeLinejoin="round" />
+    <g transform="rotate(-6 46 50)">
+      <rect x="18" y="16" width="50" height="64" rx="5" fill="#FACC15" stroke="#090D16" strokeWidth="3.5" />
+      <rect x="24" y="22" width="38" height="52" fill="#FFFFFF" stroke="#090D16" strokeWidth="2.5" />
+      <rect x="28" y="28" width="30" height="12" rx="2" transform="rotate(-10 43 34)" fill="#FFE4E6" stroke="#E11D48" strokeWidth="2.5" />
+      <path d="M30 48 H56 M30 56 H50 M30 64 H44" stroke="#334155" strokeWidth="3" strokeLinecap="round" />
+    </g>
+    <circle cx="64" cy="60" r="17" fill="#E0F2FE" fillOpacity="0.92" stroke="#090D16" strokeWidth="3.5" />
+    <path d="M56 52 L62 66" stroke="#FFFFFF" strokeWidth="3" strokeLinecap="round" />
+    <path d="M76 72 L90 86" stroke="#D97706" strokeWidth="7" strokeLinecap="round" fill="none" />
+    <path d="M76 72 L90 86" stroke="#090D16" strokeWidth="2.5" strokeLinecap="round" />
+  </svg>
+);
+
+// BẢO BỐI 7: Viên Nhận định-4869 (Phân tích tài chính)
+const AptxPillSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[3px_4px_0px_#090D16]">
+    <circle cx="50" cy="52" r="36" fill="#FCE7F3" stroke="#DB2777" strokeWidth="2.5" strokeDasharray="6 3" />
+    <g transform="rotate(-35 50 52)">
+      <path d="M33 52 V28 C33 18, 67 18, 67 28 V52 Z" fill="#E11D48" stroke="#090D16" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M33 52 V76 C33 86, 67 86, 67 76 V52 Z" fill="#FFFFFF" stroke="#090D16" strokeWidth="3.5" strokeLinejoin="round" />
+      <path d="M40 26 V47" stroke="#FDA4AF" strokeWidth="4" strokeLinecap="round" />
+      <path d="M40 57 V74" stroke="#CBD5E1" strokeWidth="4" strokeLinecap="round" />
+    </g>
+    <rect x="40" y="8" width="54" height="20" rx="10" fill="#090D16" stroke="#FF2A5F" strokeWidth="2.5" />
+    <text x="67" y="21" textAnchor="middle" fill="#FFFFFF" fontSize="10" fontWeight="900">APTX•AI</text>
+  </svg>
+);
+
+// BẢO BỐI 8: Huy Hiệu Thám Tử Nhí DB (Cài đặt & số dư đầu)
+const DetectiveBadgeSVG = () => (
+  <svg viewBox="0 0 100 100" className="w-20 h-20 sm:w-24 sm:h-24 drop-shadow-[3px_4px_0px_#090D16]">
+    <path d="M50 26 V8" stroke="#CBD5E1" strokeWidth="4.5" strokeLinecap="round" />
+    <circle cx="50" cy="8" r="4.5" fill="#FF2A5F" stroke="#090D16" strokeWidth="2.5" />
+    <path d="M32 14 Q50 2 68 14" stroke="#38BDF8" strokeWidth="3" fill="none" strokeLinecap="round" />
+    <path d="M18 26 H82 L75 64 L50 88 L25 64 Z" fill="#FACC15" stroke="#090D16" strokeWidth="3.5" strokeLinejoin="round" />
+    <path d="M25 32 H75 L69 60 L50 79 L31 60 Z" fill="#FEF08A" stroke="#CA8A04" strokeWidth="2" strokeLinejoin="round" />
+    <path d="M33 40 H44 C49 40, 49 58, 44 58 H33 Z M54 40 H65 C69 40, 69 49, 63 49 C69 49, 69 58, 65 58 H54 Z" fill="#E11D48" stroke="#090D16" strokeWidth="2.5" strokeLinejoin="round" />
+  </svg>
+);
+
+// ============================================================================
+// 4. DANH MỤC CHI TIÊU MẶC ĐỊNH & DỮ LIỆU KHỞI TẠO
+// ============================================================================
+const CATEGORIES = [
+  { id: "food", name: "Ăn uống & Cà phê", color: "#F43F5E", badge: "🍜" },
+  { id: "transit", name: "Di chuyển & Xăng xe", color: "#38BDF8", badge: "🛵" },
+  { id: "study", name: "Học tập & Thiết bị BK", color: "#10B981", badge: "📐" },
+  { id: "fun", name: "Giải trí & Gaming", color: "#A855F7", badge: "🎮" },
+  { id: "bills", name: "Hóa đơn & Nhà trọ", color: "#F59E0B", badge: "⚡" },
+  { id: "other", name: "Chi phát sinh khác", color: "#64748B", badge: "📦" },
+];
+
+const DEFAULT_DATA = {
+  selectedMonth: "2026-10",
+  initialBalance: 500000,
+  incomes: { salary: 1500000, family: 2500000, scholarship: 0, other: 0 },
+  goal: { name: "Nâng cấp RAM / Đồ công nghệ", target: 3500000, saved: 800000 },
+  limits: { food: 1500000, transit: 400000, study: 300000, fun: 400000, bills: 600000, other: 300000 },
+  transactions: [
+    { id: "t1", type: "expense", category: "food", note: "Cà phê Highlands ôn bài", amount: 55000, date: "2026-10-15" },
+    { id: "t2", type: "expense", category: "transit", note: "Đổ xăng & Grab đi học", amount: 85000, date: "2026-10-16" },
+    { id: "t3", type: "expense", category: "food", note: "Ăn tối cùng hội bạn", amount: 160000, date: "2026-10-17" },
+  ],
+};
+
+// ============================================================================
+// 5. COMPONENT CHÍNH: BK•FLOW - DETECTIVE CONAN EDITION
+// ============================================================================
+function App() {
+  const [data, setData] = useState(() => {
+    try {
+      const saved = localStorage.getItem("bk_flow_conan_v3");
+      return saved ? JSON.parse(saved) : DEFAULT_DATA;
+    } catch {
+      return DEFAULT_DATA;
+    }
+  });
+
+  const [hideNumbers, setHideNumbers] = useState(false);
+  const [soundEnabled, setSoundEnabled] = useState(true);
+  const [activeGadget, setActiveGadget] = useState(null);
+  const [aiPersona, setAiPersona] = useState("haibara");
+  const [smartInput, setSmartInput] = useState("");
+  const [quickFeedback, setQuickFeedback] = useState("");
+  const [whatIfAmount, setWhatIfAmount] = useState(0);
+
+  const [manualTx, setManualTx] = useState({
+    type: "expense", category: "food", note: "", amount: "",
+    date: new Date().toISOString().slice(0, 10),
+  });
+
+  useEffect(() => {
+    try { localStorage.setItem("bk_flow_conan_v3", JSON.stringify(data)); } catch (e) {}
+  }, [data]);
+
+  const stats = useMemo(() => {
+    const plannedIncome = (Number(data.incomes.salary) || 0) + (Number(data.incomes.family) || 0) + (Number(data.incomes.scholarship) || 0) + (Number(data.incomes.other) || 0);
+    const extraIncomeTx = data.transactions.filter((t) => t.type === "income").reduce((sum, t) => sum + (Number(t.amount) || 0), 0);
+    const totalMonthlyIncome = plannedIncome + extraIncomeTx;
+    const totalSpentThisMonth = data.transactions.filter((t) => t.type === "expense").reduce((sum, t) => sum + (Number(t.amount) || 0), 0);
+    const totalLimits = Object.values(data.limits).reduce((sum, val) => sum + (Number(val) || 0), 0);
+    const monthlyBudget = Math.max(1, totalLimits > 0 ? totalLimits : totalMonthlyIncome || 1);
+    const spentPercent = Math.round((totalSpentThisMonth / monthlyBudget) * 100);
+    const manaPercent = Math.max(0, Math.min(100, 100 - spentPercent));
+    const availableBalance = (Number(data.initialBalance) || 0) + totalMonthlyIncome - totalSpentThisMonth;
+    const now = new Date();
+    const daysInMonth = new Date(now.getFullYear(), now.getMonth() + 1, 0).getDate();
+    const remainingDays = Math.max(1, daysInMonth - now.getDate() + 1);
+    const remainingBudget = Math.max(0, monthlyBudget - totalSpentThisMonth);
+    const safeDailySpend = Math.round(remainingBudget / remainingDays);
+    const byCategory = CATEGORIES.map((cat) => {
+      const spent = data.transactions.filter((t) => t.type === "expense" && t.category === cat.id).reduce((s, t) => s + (Number(t.amount) || 0), 0);
+      const limit = Number(data.limits[cat.id]) || 0;
+      const pctOfSpent = totalSpentThisMonth > 0 ? Math.round((spent / totalSpentThisMonth) * 100) : 0;
+      return { ...cat, spent, limit, pctOfSpent, limitPct: limit > 0 ? Math.round((spent / limit) * 100) : 0 };
+    });
+    const simulatedSpent = totalSpentThisMonth + (Number(whatIfAmount) || 0);
+    const simulatedSpentPct = Math.round((simulatedSpent / monthlyBudget) * 100);
+    const simulatedManaPct = Math.max(0, Math.min(100, 100 - simulatedSpentPct));
+    const simulatedDaily = Math.max(0, Math.round((monthlyBudget - simulatedSpent) / remainingDays));
+    return { plannedIncome, extraIncomeTx, totalMonthlyIncome, totalSpentThisMonth, monthlyBudget, spentPercent, manaPercent, availableBalance, remainingDays, remainingBudget, safeDailySpend, byCategory, simulatedSpentPct, simulatedManaPct, simulatedDaily };
+  }, [data, whatIfAmount]);
+
+  const detectCategoryAndType = (text) => {
+    const lower = text.toLowerCase();
+    if (/lương|thưởng|học bổng|mẹ cho|bố cho|gia đình|nhận|thu nhập/.test(lower)) return { type: "income", category: "other" };
+    if (/ăn|uống|cơm|phở|bún|trà sữa|cafe|cà phê|highland|circle k|pizza|lotteria|bánh/.test(lower)) return { type: "expense", category: "food" };
+    if (/xăng|grab|xe|bus|gửi xe|đi lại|di chuyển/.test(lower)) return { type: "expense", category: "transit" };
+    if (/sách|học|in tài liệu|autocad|chuột|phím|ram|laptop|linh kiện/.test(lower)) return { type: "expense", category: "study" };
+    if (/game|nạp|thẻ|phim|spotify|netflix|chơi|bóng đá/.test(lower)) return { type: "expense", category: "fun" };
+    if (/điện|nước|mạng|wifi|nhà|trọ|hóa đơn|4g|5g/.test(lower)) return { type: "expense", category: "bills" };
+    return { type: "expense", category: "other" };
+  };
+
+  const handleSmartSubmit = (e, presetText = null) => {
+    if (e) e.preventDefault();
+    const raw = (presetText !== null ? presetText : smartInput).trim();
+    if (!raw) return;
+    const parts = raw.split(/[,;]+/).map((s) => s.trim()).filter(Boolean);
+    const newTxs = [];
+    parts.forEach((part, idx) => {
+      const match = part.match(/(\d+(?:[.,]\d+)?)\s*(k|nghìn|ngàn|tr|triệu|củ|đ|d)?/i);
+      if (!match) return;
+      let num = parseFloat(match[1].replace(",", "."));
+      const unit = (match[2] || "").toLowerCase();
+      if (unit === "k" || unit === "nghìn" || unit === "ngàn") num *= 1000;
+      else if (unit === "tr" || unit === "triệu" || unit === "củ") num *= 1000000;
+      else if (num < 1000) num *= 1000;
+      const amount = Math.round(num);
+      const cleanNote = part.replace(match[0], "").trim() || "Giao dịch ghi nhanh";
+      const { type, category } = detectCategoryAndType(part);
+      newTxs.push({ id: "tx_" + Date.now() + "_" + idx, type, category, note: cleanNote.charAt(0).toUpperCase() + cleanNote.slice(1), amount, date: new Date().toISOString().slice(0, 10) });
+    });
+    if (newTxs.length === 0) {
+      setQuickFeedback("⚠️ Chưa tìm thấy số tiền! Hãy gõ ví dụ: 'Ăn tối 45k' hoặc 'Đổ xăng 70k'");
+      playGadgetSound("alert", soundEnabled);
+      return;
+    }
+    setData((prev) => ({ ...prev, transactions: [...newTxs, ...prev.transactions] }));
+    const hasIncome = newTxs.some((t) => t.type === "income");
+    playGadgetSound(hasIncome ? "coin" : "laser", soundEnabled);
+    const first = newTxs[0];
+    const catObj = CATEGORIES.find((c) => c.id === first.category) || CATEGORIES[5];
+    setQuickFeedback(`✅ Đã phá án ${newTxs.length} khoản! Ghi ${formatVND(first.amount)} vào "${first.type === "income" ? "Nguồn thu thêm" : catObj.name}".`);
+    if (presetText === null) setSmartInput("");
+  };
+
+  const aiDialogue = useMemo(() => {
+    const topCat = [...stats.byCategory].sort((a, b) => b.spent - a.spent)[0];
+    if (aiPersona === "haibara") {
+      if (stats.spentPercent >= 85) return `🧪 Haibara Ai: "Ngân sách cả tháng đã bốc hơi ${stats.spentPercent}% rồi đấy. Cậu định nhịn đói đến cuối tháng hay chờ tôi bào chế thuốc APTX-4869 thu nhỏ cái dạ dày của cậu lại?"`;
+      if (stats.spentPercent >= 60) return `🧪 Haibara Ai: "Đã ngốn ${stats.spentPercent}% ngân sách tháng. Khoản '${topCat?.name || "Ăn uống"}' đang dẫn đầu với ${formatVND(topCat?.spent || 0, hideNumbers)}. Đừng để Kaito Kid cuỗm nốt phần Mana còn lại nhé."`;
+      return `🧪 Haibara Ai: "Mới dùng ${stats.spentPercent}% ngân sách tháng (Còn ${stats.manaPercent}% Mana). Khá khen cho kỷ luật của một kỹ sư Bách Khoa đấy, cứ giữ phong độ này đi."`;
+    }
+    if (aiPersona === "conan") return `Conan: "Sự thật luôn chỉ có một! Dựa trên dấu vết hiện trường, tổng chi tháng này là ${formatVND(stats.totalSpentThisMonth, hideNumbers)} / ${formatVND(stats.monthlyBudget, hideNumbers)} (${stats.spentPercent}%). Để an toàn qua ${stats.remainingDays} ngày còn lại, định mức tối đa của cậu là ${formatVND(stats.safeDailySpend, hideNumbers)}/ngày!"`;
+    return `🧔‍♂️ Tiến sĩ Agasa: "Hahaha! Cháu đang quản lý dòng tiền rất bài bản đấy! Mục tiêu '${data.goal.name}' đã tích lũy được ${Math.min(100, Math.round(((data.goal.saved || 0) / Math.max(1, data.goal.target)) * 100))}% rồi, cố lên nhé!"`;
+  }, [aiPersona, stats, data.goal, hideNumbers]);
+
+  const alertLevel = stats.spentPercent >= 85 ? "danger" : stats.spentPercent >= 60 ? "warning" : "safe";
+  const manaCardBorderClass = alertLevel === "danger"
+    ? "border-[3.5px] border-rose-500 shadow-[6px_6px_0px_#090D16,0_0_40px_rgba(244,63,94,0.85)]"
+    : alertLevel === "warning"
+    ? "border-[3.5px] border-amber-400 shadow-[6px_6px_0px_#090D16,0_0_30px_rgba(251,191,36,0.45)]"
+    : "border-[3.5px] border-cyan-400 shadow-[6px_6px_0px_#090D16,0_0_25px_rgba(34,211,238,0.3)]";
+  const manaFillClass = alertLevel === "danger"
+    ? "from-rose-500 via-red-600 to-rose-700 shadow-[0_0_20px_rgba(244,63,94,0.9)]"
+    : alertLevel === "warning"
+    ? "from-amber-400 via-orange-500 to-rose-500 shadow-[0_0_20px_rgba(245,158,11,0.8)]"
+    : "from-blue-500 via-cyan-400 to-emerald-400 shadow-[0_0_20px_rgba(52,211,153,0.8)]";
+
+  const greeting = useMemo(() => {
+    const h = new Date().getHours();
+    if (h < 11) return "Chào buổi sáng ☀️";
+    if (h < 18) return "Chào buổi chiều ⚡";
+    return "Chào buổi tối";
+  }, []);
+
+  const GADGET_ITEMS = [
+    { id: "expense", title: "Thêm giao dịch", subtitle: "Thu / chi", Component: GadgetWatchSVG },
+    { id: "chart", title: "Phân tích chi tiêu", subtitle: "Biểu đồ", Component: GadgetGlassesSVG },
+    { id: "income", title: "Nguồn thu", subtitle: "Thu nhập", Component: KaitoKidHatSVG },
+    { id: "limits", title: "Hạn mức ngân sách", subtitle: "Ngân sách", Component: PowerShoesSVG },
+    { id: "goal", title: "Mục tiêu tiết kiệm", subtitle: "Tiết kiệm", Component: TurboSkateboardSVG },
+    { id: "history", title: "Hồ sơ giao dịch", subtitle: "Lịch sử", Component: CaseFileSVG },
+    { id: "ai", title: "Phân tích tài chính", subtitle: "Nhận định", Component: AptxPillSVG },
+    { id: "settings", title: "Cài đặt & số dư", subtitle: "Cài đặt", Component: DetectiveBadgeSVG },
+  ];
+
+  const renderDonutChart = () => {
+    const total = stats.totalSpentThisMonth;
+    const radius = 66;
+    const circumference = 2 * Math.PI * radius;
+    let accumulatedPercent = 0;
+    return (
+      <div className="flex flex-col sm:flex-row items-center gap-6">
+        <div className="relative w-44 h-44 shrink-0 flex items-center justify-center">
+          <svg viewBox="0 0 180 180" className="w-full h-full -rotate-90">
+            <circle cx="90" cy="90" r={radius} fill="none" stroke="#E2E8F0" strokeWidth="22" />
+            {total > 0 && stats.byCategory.map((cat) => {
+              if (cat.spent <= 0) return null;
+              const pct = cat.spent / total;
+              const strokeDasharray = `${pct * circumference} ${circumference}`;
+              const strokeDashoffset = -accumulatedPercent * circumference;
+              accumulatedPercent += pct;
+              return <circle key={cat.id} cx="90" cy="90" r={radius} fill="none" stroke={cat.color} strokeWidth="22" strokeDasharray={strokeDasharray} strokeDashoffset={strokeDashoffset} className="transition-all duration-500" />;
+            })}
+          </svg>
+          <div className="absolute inset-0 flex flex-col items-center justify-center text-center px-4">
+            <span className="text-[11px] font-extrabold uppercase tracking-wider text-slate-500">Đã chi tháng</span>
+            <span className="text-sm sm:text-base font-black text-slate-900 tabular-nums">{formatVND(total, hideNumbers)}</span>
+            <span className="text-[11px] font-bold text-rose-600">{stats.spentPercent}% hạn mức</span>
+          </div>
+        </div>
+        <div className="flex-1 w-full space-y-2.5">
+          {stats.byCategory.map((cat) => (
+            <div key={cat.id} className="space-y-1">
+              <div className="flex items-center justify-between text-xs sm:text-sm font-bold">
+                <span className="flex items-center gap-1.5 text-slate-800"><span>{cat.badge}</span><span>{cat.name}</span></span>
+                <span className="tabular-nums text-slate-900">{formatVND(cat.spent, hideNumbers)} <span className="text-slate-500 font-semibold">({cat.pctOfSpent}%)</span></span>
+              </div>
+              <div className="w-full h-2.5 rounded-full bg-slate-200 overflow-hidden border border-slate-900/20">
+                <div className="h-full rounded-full transition-all duration-500" style={{ width: `${Math.min(100, cat.limitPct || cat.pctOfSpent)}%`, backgroundColor: cat.limitPct >= 90 ? "#EF4444" : cat.color }} />
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <div className="min-h-screen relative overflow-x-hidden bg-gradient-to-br from-[#0B1120] via-[#172554] to-[#1E1B4B] text-slate-900 pb-16 selection:bg-rose-500 selection:text-white">
+      {alertLevel === "danger" && <div className="fixed inset-0 pointer-events-none border-[6px] border-rose-500/60 z-50 animate-pulse shadow-[inset_0_0_50px_rgba(244,63,94,0.35)]" />}
+      <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="absolute -top-32 -left-32 w-[500px] h-[500px] rounded-full bg-rose-600/25 blur-[120px]" />
+        <div className="absolute top-1/4 -right-32 w-[500px] h-[500px] rounded-full bg-cyan-500/20 blur-[120px]" />
+        <div className="absolute -bottom-32 left-1/4 w-[450px] h-[450px] rounded-full bg-amber-500/15 blur-[110px]" />
+        <div className="absolute inset-0" style={{ backgroundImage: "radial-gradient(rgba(255,255,255,0.13) 1.5px, transparent 1.5px), linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)", backgroundSize: "22px 22px, 88px 88px, 88px 88px" }} />
+        <svg viewBox="0 0 200 300" className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[420px] h-[520px] opacity-[0.04]">
+          <circle cx="100" cy="95" r="70" fill="#FFFFFF" /><path d="M60 145 L35 280 H165 L140 145 Z" fill="#FFFFFF" />
+        </svg>
+      </div>
+
+      <div className="relative z-10 max-w-3xl mx-auto px-4 sm:px-6 pt-5">
+        <header className="flex flex-wrap items-center justify-between gap-3 mb-6">
+          <div className="flex items-center gap-3 sm:gap-4">
+            <ConanBowtieLogo onClick={() => playGadgetSound("radar", soundEnabled)} />
+            <div>
+              <div className="flex flex-wrap items-center gap-2">
+                <h1 className="text-2xl sm:text-3xl font-black tracking-tight text-white drop-shadow-[3px_3px_0px_#090D16]"><span className="text-[#D5B56A]">Conan</span> Casebook</h1>
+                {alertLevel === "safe" && <span className="bg-cyan-400 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#090D16] font-extrabold text-xs px-3 py-1 rounded-full">Hồ sơ tài chính</span>}
+                {alertLevel === "warning" && <span className="bg-amber-400 text-slate-950 border-2 border-slate-950 shadow-[2px_2px_0px_#090D16] font-extrabold text-xs px-3 py-1 rounded-full">Theo dõi ngân sách</span>}
+                {alertLevel === "danger" && <span className="bg-rose-500 text-white border-2 border-slate-950 shadow-[2px_2px_0px_#090D16] font-extrabold text-xs px-3 py-1 rounded-full animate-bounce">Cần xem lại chi tiêu</span>}
+              </div>
+              <p className="text-xs sm:text-sm font-bold text-cyan-200/90 mt-0.5">{greeting} • <span className="italic text-white/80">"Sự thật về dòng tiền luôn chỉ có một!"</span></p>
+            </div>
+          </div>
+          <div className="flex items-center gap-2">
+            <button onClick={() => setSoundEnabled(!soundEnabled)} className="px-3 py-2 rounded-xl bg-slate-900/90 text-white border-2 border-slate-950 shadow-[3px_3px_0px_#090D16] text-xs font-extrabold hover:bg-slate-800 active:translate-y-0.5 transition-all" title="Bật/Tắt hiệu ứng âm thanh bảo bối">{soundEnabled ? "🔊 SFX" : "🔇 Tắt âm"}</button>
+            <button onClick={() => { playGadgetSound("radar", soundEnabled); setHideNumbers(!hideNumbers); }} className="px-3.5 py-2 rounded-xl bg-[#FFFDF9] text-slate-900 border-2 border-slate-950 shadow-[3px_3px_0px_#090D16] text-xs sm:text-sm font-extrabold hover:bg-rose-50 active:translate-y-0.5 transition-all">{hideNumbers ? "🙈 Hiện số" : "👁️ Ẩn số"}</button>
+            <input type="month" value={data.selectedMonth} onChange={(e) => setData((prev) => ({ ...prev, selectedMonth: e.target.value }))} className="px-3 py-2 rounded-xl bg-[#FFFDF9] text-slate-900 border-2 border-slate-950 shadow-[3px_3px_0px_#090D16] text-xs sm:text-sm font-extrabold focus:outline-none" />
+          </div>
+        </header>
+
+        <section className={`rounded-3xl p-5 sm:p-6 bg-gradient-to-br from-[#090D16] via-[#111827] to-[#2E1065] text-white relative overflow-hidden mb-6 transition-all duration-500 ${manaCardBorderClass}`}>
+          <svg viewBox="0 0 200 200" className="w-60 h-60 opacity-15 pointer-events-none absolute -right-12 -top-12 text-cyan-400">
+            <circle cx="100" cy="100" r="85" stroke="currentColor" strokeWidth="2" strokeDasharray="6 4" fill="none" /><circle cx="100" cy="100" r="55" stroke="currentColor" strokeWidth="2" fill="none" /><circle cx="100" cy="100" r="25" stroke="#F43F5E" strokeWidth="2" fill="none" /><path d="M100 5 V195 M5 100 H195" stroke="currentColor" strokeWidth="1.5" />
+          </svg>
+          <div className="relative z-10 flex flex-wrap items-start justify-between gap-3">
+            <div><p className="text-xs font-extrabold uppercase tracking-widest text-slate-300 flex items-center gap-1.5"><span>SỐ DƯ HIỆN TẠI</span></p><div className="text-3xl sm:text-5xl font-black tracking-tight tabular-nums mt-1 text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-emerald-300 drop-shadow-[0_2px_10px_rgba(34,211,238,0.25)]">{formatVND(stats.availableBalance, hideNumbers)}</div></div>
+            <div className={`px-4 py-1.5 rounded-full font-black text-xs sm:text-sm border-2 flex items-center gap-1.5 ${alertLevel === "danger" ? "bg-rose-600/30 border-rose-400 text-rose-200 animate-pulse" : alertLevel === "warning" ? "bg-amber-500/25 border-amber-300 text-amber-200" : "bg-cyan-500/20 border-cyan-300 text-cyan-200"}`}><span>{stats.manaPercent}% NGÂN SÁCH CÒN</span></div>
+          </div>
+          <div className="relative z-10 h-9 rounded-full bg-slate-950/90 p-1.5 border-2 border-slate-700 shadow-inner overflow-hidden my-4">
+            <div className={`h-full rounded-full bg-gradient-to-r transition-all duration-700 relative ${manaFillClass}`} style={{ width: `${Math.max(4, stats.manaPercent)}%` }}><div className="absolute right-0 top-0 bottom-0 w-2.5 rounded-full bg-white shadow-[0_0_12px_#FFFFFF]" /></div>
+            <div className="absolute inset-0 flex justify-evenly pointer-events-none"><div className="w-0.5 h-full bg-white/20" /><div className="w-0.5 h-full bg-white/25" /><div className="w-0.5 h-full bg-white/20" /></div>
+          </div>
+          <div className="relative z-10 flex flex-wrap items-center justify-between gap-2 mb-4">
+            <div className={`text-lg sm:text-2xl font-black tracking-tight ${alertLevel === "danger" ? "text-rose-400" : alertLevel === "warning" ? "text-amber-300" : "text-cyan-300"}`}>Đã sử dụng {stats.spentPercent}% ngân sách tháng</div>
+            <div className="whitespace-nowrap px-3.5 py-1.5 rounded-xl bg-white/10 border border-white/20 text-xs sm:text-sm font-extrabold text-amber-300 tabular-nums">Ngân sách tháng: {formatVND(stats.monthlyBudget, hideNumbers)}</div>
+          </div>
+          <div className="relative z-10 bg-white/10 backdrop-blur-md border border-white/15 rounded-2xl p-3.5 grid grid-cols-3 gap-2 text-center">
+            <div><p className="text-[11px] sm:text-xs text-slate-300 font-bold">Tổng thu tháng</p><p className="text-sm sm:text-lg font-black text-cyan-300 tabular-nums mt-0.5">{formatVND(stats.totalMonthlyIncome, hideNumbers)}</p></div>
+            <div className="border-x border-white/15 px-1"><p className="text-[11px] sm:text-xs text-slate-300 font-bold">Đã chi tiêu</p><p className="text-sm sm:text-lg font-black text-rose-300 tabular-nums mt-0.5">{formatVND(stats.totalSpentThisMonth, hideNumbers)}</p></div>
+            <div><p className="text-[11px] sm:text-xs text-slate-300 font-bold">TB được tiêu / ngày còn lại</p><p className="text-sm sm:text-lg font-black text-emerald-300 tabular-nums mt-0.5">{formatVND(stats.safeDailySpend, hideNumbers)}</p></div>
+          </div>
+          <div className="relative z-10 mt-3.5 text-center text-xs sm:text-sm font-bold">
+            {alertLevel === "safe" && <span className="text-emerald-300">✅ Tháng này bạn mới dùng {stats.spentPercent}% ngân sách được tiêu (Còn {stats.manaPercent}% Mana • Đủ tiêu thoải mái {stats.remainingDays} ngày nữa)</span>}
+            {alertLevel === "warning" && <span className="text-amber-300">⚠️ Chú ý: Bạn đã dùng {stats.spentPercent}% ngân sách cả tháng! Hãy giữ nhịp chi dưới {formatVND(stats.safeDailySpend, hideNumbers)}/ngày.</span>}
+            {alertLevel === "danger" && <span className="text-rose-300 animate-pulse">🚨 BÁO ĐỘNG ĐỎ APTX: Bạn đã ngốn {stats.spentPercent}% ngân sách cả tháng! Khóa chặt ví ngay lập tức!</span>}
+          </div>
+        </section>
+
+        <section className="mb-6 space-y-3">
+          <div className="bg-[#FFFDF9] rounded-2xl p-4 border-[3px] border-slate-950 shadow-[5px_5px_0px_#090D16]">
+            <div className="flex flex-wrap items-center justify-between gap-2 mb-2"><span className="text-xs font-black uppercase tracking-wider text-rose-600 flex items-center gap-1"><span>Ghi chú phân tích</span></span>
+              <div className="flex items-center gap-1.5">{[{ id: "haibara", label: "🧪 Haibara (Khắt khe)" }, { id: "conan", label: "🕵️‍♂️ Conan (Logic)" }, { id: "agasa", label: "🧔‍♂️ Tiến sĩ (Dịu dàng)" }].map((p) => <button key={p.id} onClick={() => { playGadgetSound("radar", soundEnabled); setAiPersona(p.id); }} className={`px-2.5 py-1 rounded-lg text-[11px] font-extrabold border-2 transition-all ${aiPersona === p.id ? "bg-slate-950 text-white border-slate-950" : "bg-slate-100 text-slate-700 border-slate-300 hover:bg-slate-200"}`}>{p.label}</button>)}</div>
+            </div>
+            <p className="text-xs sm:text-sm font-bold text-slate-800 leading-relaxed bg-amber-50/90 p-3 rounded-xl border-2 border-amber-300">{aiDialogue}</p>
+          </div>
+          <form onSubmit={(e) => handleSmartSubmit(e)} className="bg-[#FFFDF9] rounded-2xl p-2 pl-4 border-[3px] border-slate-950 shadow-[5px_5px_0px_#090D16] flex flex-wrap sm:flex-nowrap items-center gap-2">
+            <span className="text-xl select-none">✨</span>
+            <input type="text" value={smartInput} onChange={(e) => setSmartInput(e.target.value)} placeholder="Gõ nhanh: Ăn tối 45k, Đổ xăng 70k, Nhận học bổng 2tr..." className="flex-1 min-w-[200px] bg-transparent text-slate-900 placeholder:text-slate-400 text-sm sm:text-base font-bold py-2 focus:outline-none" />
+            <button type="submit" className="w-full sm:w-auto bg-gradient-to-r from-rose-600 to-pink-600 hover:from-rose-500 hover:to-pink-500 text-white font-black text-sm px-5 py-3 rounded-xl border-2 border-slate-950 shadow-[2px_2px_0px_#090D16] active:translate-y-0.5 transition-all cursor-pointer">🔍 Ghi ngay</button>
+          </form>
+          <div className="flex flex-wrap items-center justify-between gap-2 px-1">
+            <div className="flex flex-wrap items-center gap-1.5"><span className="text-xs font-extrabold text-cyan-200">Chạm nhanh:</span>
+              {["Ăn sáng 35k", "Cơm trưa 45k", "Cà phê 50k", "Grab 30k", "Đổ xăng 70k"].map((chip) => <button key={chip} type="button" onClick={() => handleSmartSubmit(null, chip)} className="text-xs font-extrabold px-2.5 py-1 rounded-lg bg-slate-900/80 text-cyan-300 border border-cyan-400/40 hover:bg-rose-600 hover:text-white hover:border-white transition-all cursor-pointer">+ {chip}</button>)}
+            </div>
+            {quickFeedback && <span className="text-xs font-extrabold text-amber-300 bg-slate-950/90 px-3 py-1 rounded-lg border border-amber-400/50">{quickFeedback}</span>}
+          </div>
+        </section>
+
+        <section className="bg-[#FFFDF9] rounded-3xl p-5 sm:p-6 border-[3.5px] border-slate-950 shadow-[7px_7px_0px_#090D16] mb-6 relative overflow-hidden">
+          <div className="flex items-center justify-between mb-5"><div><h2 className="text-lg sm:text-xl font-black text-slate-950 flex items-center gap-2"><span>Công cụ quản lý tài chính</span></h2><p className="text-xs font-bold text-slate-500">Chọn công cụ để xem và quản lý chi tiết</p></div><span className="px-3 py-1 rounded-full bg-rose-100 text-rose-700 border-2 border-slate-950 text-xs font-black">8 CÔNG CỤ</span></div>
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6">
+            {GADGET_ITEMS.map(({ id, title, subtitle, Component }) => <button key={id} type="button" onClick={() => { playGadgetSound("radar", soundEnabled); setActiveGadget(id); }} className="group flex flex-col items-center justify-center p-2 rounded-2xl hover:bg-amber-50/70 transition-all focus:outline-none cursor-pointer">
+              <div className="transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-3 group-active:scale-95"><Component /></div>
+              <span className="mt-2 px-3 py-1 rounded-xl bg-slate-950 text-white text-xs sm:text-sm font-black tracking-wide border-2 border-slate-950 shadow-[2px_2px_0px_#FF2A5F] group-hover:bg-rose-600 group-hover:shadow-[2px_2px_0px_#090D16] transition-all">{title}</span>
+              <span className="text-[11px] font-bold text-slate-500 mt-1">{subtitle}</span>
+            </button>)}
+          </div>
+        </section>
+
+        <div className="grid grid-cols-1 gap-6">
+          <section className="bg-[#FFFDF9] rounded-3xl p-5 sm:p-6 border-[3.5px] border-slate-950 shadow-[7px_7px_0px_#090D16]">
+            <div className="flex items-center justify-between mb-4"><h3 className="text-base sm:text-lg font-black text-slate-950">Phân bổ chi tiêu tháng</h3><button onClick={() => setActiveGadget("limits")} className="text-xs font-extrabold text-rose-600 underline hover:text-rose-800">Chỉnh hạn mức &rarr;</button></div>
+            {renderDonutChart()}
+          </section>
+          <section className="bg-[#FFFDF9] rounded-3xl p-5 sm:p-6 border-[3.5px] border-slate-950 shadow-[7px_7px_0px_#090D16] space-y-6">
+            <div className="bg-slate-900 text-white rounded-2xl p-4 border-2 border-slate-950 shadow-[4px_4px_0px_#E11D48]">
+              <div className="flex flex-wrap items-center justify-between gap-2 mb-2"><span className="text-xs sm:text-sm font-black text-cyan-300">Mô phỏng ngân sách nếu chi thêm</span><span className="text-base sm:text-lg font-black text-amber-300 tabular-nums">+ {formatVND(whatIfAmount)}</span></div>
+              <input type="range" min="0" max="3000000" step="50000" value={whatIfAmount} onChange={(e) => setWhatIfAmount(Number(e.target.value))} className="w-full accent-rose-500 cursor-pointer my-2" />
+              <div className="flex flex-wrap items-center justify-between text-xs font-bold text-slate-300 gap-2 mt-1"><span>Ngân sách còn: <strong className={stats.simulatedManaPct < 20 ? "text-rose-400" : "text-emerald-300"}>{stats.simulatedManaPct}%</strong> (Đã tiêu {stats.simulatedSpentPct}%)</span><span>Mức chi/ngày: <strong className="text-amber-300">{formatVND(stats.simulatedDaily, hideNumbers)}/ngày</strong></span></div>
+            </div>
+            <div>
+              <div className="flex items-center justify-between mb-3"><h3 className="text-base sm:text-lg font-black text-slate-950">Giao dịch gần đây ({data.transactions.length})</h3><button onClick={() => setActiveGadget("expense")} className="px-3 py-1 rounded-lg bg-rose-600 text-white text-xs font-extrabold border-2 border-slate-950 shadow-[2px_2px_0px_#090D16]">+ Thêm mới</button></div>
+              {data.transactions.length === 0 ? <p className="text-sm font-bold text-slate-500 text-center py-6">Chưa có giao dịch nào trong hồ sơ!</p> : <div className="space-y-2.5 max-h-72 overflow-y-auto pr-1">{data.transactions.slice(0, 8).map((tx) => {
+                const cat = CATEGORIES.find((c) => c.id === tx.category) || CATEGORIES[5];
+                return <div key={tx.id} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border-2 border-slate-900 shadow-[2px_2px_0px_#090D16]">
+                  <div className="flex items-center gap-3"><span className="text-2xl">{tx.type === "income" ? "🎩" : cat.badge}</span><div><p className="text-sm font-black text-slate-900">{tx.note}</p><p className="text-[11px] font-bold text-slate-500">{tx.type === "income" ? "Nguồn thu thêm" : cat.name} • {tx.date}</p></div></div>
+                  <div className="flex items-center gap-3"><span className={`text-sm sm:text-base font-black tabular-nums ${tx.type === "income" ? "text-emerald-600" : "text-rose-600"}`}>{tx.type === "income" ? "+" : "-"}{formatVND(tx.amount, hideNumbers)}</span><button onClick={() => { playGadgetSound("radar", soundEnabled); setData((prev) => ({ ...prev, transactions: prev.transactions.filter((item) => item.id !== tx.id) })); }} className="w-7 h-7 rounded-lg bg-rose-100 hover:bg-rose-500 text-rose-700 hover:text-white font-black text-xs border border-slate-900 flex items-center justify-center transition-colors" title="Xóa dấu vết">✕</button></div>
+                </div>;
+              })}</div>}
+            </div>
+          </section>
+        </div>
+      </div>
+
+      {activeGadget && <div onClick={() => setActiveGadget(null)} className="fixed inset-0 z-50 bg-slate-950/75 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4">
+        <div onClick={(e) => e.stopPropagation()} className="w-full max-w-xl max-h-[88vh] overflow-y-auto bg-[#FFFDF9] rounded-t-3xl sm:rounded-3xl p-5 sm:p-6 border-t-[4px] sm:border-[4px] border-slate-950 shadow-[0_-8px_0px_#090D16] sm:shadow-[8px_8px_0px_#090D16] text-slate-900">
+          <div className="w-12 h-1.5 bg-slate-300 rounded-full mx-auto mb-4 sm:hidden" />
+          <div className="flex items-center justify-between pb-3 mb-4 border-b-2 border-slate-200"><h3 className="text-lg sm:text-xl font-black text-slate-950">
+            {activeGadget === "expense" && "Thêm giao dịch"}
+            {activeGadget === "chart" && "👓 Biểu đồ: Phân Tích Biểu Đồ Chi Tiêu"}
+            {activeGadget === "income" && "🎩 Thu nhập: Cài Đặt Nguồn Thu Tháng"}
+            {activeGadget === "limits" && "Thiết lập hạn mức"}
+            {activeGadget === "goal" && "Mục tiêu tiết kiệm"}
+            {activeGadget === "history" && "Hồ sơ giao dịch"}
+            {activeGadget === "ai" && "💊 Viên Nhận định-4869: Chẩn Đoán Chi Tiêu"}
+            {activeGadget === "settings" && "Cài đặt & số dư"}
+          </h3><button onClick={() => setActiveGadget(null)} className="w-9 h-9 rounded-xl bg-slate-900 text-white font-black border-2 border-slate-950 hover:bg-rose-600">✕</button></div>
+
+          {activeGadget === "expense" && <form onSubmit={(e) => {
+            e.preventDefault();
+            const amt = parseInputDots(manualTx.amount);
+            if (amt <= 0) return;
+            const newEntry = { id: "tx_" + Date.now(), type: manualTx.type, category: manualTx.category, note: manualTx.note.trim() || (manualTx.type === "income" ? "Khoản thu thêm" : "Chi tiêu trong tháng"), amount: amt, date: manualTx.date };
+            setData((prev) => ({ ...prev, transactions: [newEntry, ...prev.transactions] }));
+            playGadgetSound(manualTx.type === "income" ? "coin" : "laser", soundEnabled);
+            setManualTx({ ...manualTx, note: "", amount: "" });
+            setActiveGadget(null);
+          }} className="space-y-4">
+            <div className="grid grid-cols-2 gap-2"><button type="button" onClick={() => setManualTx({ ...manualTx, type: "expense" })} className={`py-2.5 rounded-xl font-black text-sm border-2 border-slate-950 ${manualTx.type === "expense" ? "bg-rose-600 text-white shadow-[3px_3px_0px_#090D16]" : "bg-slate-100 text-slate-700"}`}>💸 Khoản Chi Tiêu</button><button type="button" onClick={() => setManualTx({ ...manualTx, type: "income" })} className={`py-2.5 rounded-xl font-black text-sm border-2 border-slate-950 ${manualTx.type === "income" ? "bg-emerald-600 text-white shadow-[3px_3px_0px_#090D16]" : "bg-slate-100 text-slate-700"}`}>🎩 Khoản Thu Thêm</button></div>
+            {manualTx.type === "expense" && <div><label className="block text-xs font-black uppercase text-slate-600 mb-1.5">Chọn Hạng Mục:</label><div className="grid grid-cols-2 sm:grid-cols-3 gap-2">{CATEGORIES.map((c) => <button key={c.id} type="button" onClick={() => setManualTx({ ...manualTx, category: c.id })} className={`p-2.5 rounded-xl text-xs font-extrabold border-2 text-left flex items-center gap-1.5 ${manualTx.category === c.id ? "bg-slate-900 text-white border-slate-950 shadow-[2px_2px_0px_#E11D48]" : "bg-white text-slate-800 border-slate-300"}`}><span>{c.badge}</span><span className="truncate">{c.name}</span></button>)}</div></div>}
+            <div><label className="block text-xs font-black uppercase text-slate-600 mb-1">Số tiền (Tự động chấm phân cách):</label><input type="text" inputMode="numeric" required value={formatInputDots(manualTx.amount)} onChange={(e) => setManualTx({ ...manualTx, amount: parseInputDots(e.target.value) })} placeholder="Ví dụ: 50.000" className="w-full px-4 py-3 rounded-xl border-2 border-slate-950 text-lg font-black tabular-nums bg-white" /></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3"><div><label className="block text-xs font-black uppercase text-slate-600 mb-1">Diễn giải / Nội dung:</label><input type="text" value={manualTx.note} onChange={(e) => setManualTx({ ...manualTx, note: e.target.value })} placeholder="VD: Ăn bún chả, Mua giáo trình..." className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-950 text-sm font-bold bg-white" /></div><div><label className="block text-xs font-black uppercase text-slate-600 mb-1">Ngày giao dịch:</label><input type="date" value={manualTx.date} onChange={(e) => setManualTx({ ...manualTx, date: e.target.value })} className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-950 text-sm font-bold bg-white" /></div></div>
+            <button type="submit" className="w-full py-3.5 rounded-xl bg-rose-600 hover:bg-rose-500 text-white font-black text-base border-2 border-slate-950 shadow-[4px_4px_0px_#090D16]">Lưu giao dịch</button>
+          </form>}
+
+          {activeGadget === "chart" && <div className="space-y-4">{renderDonutChart()}</div>}
+
+          {activeGadget === "income" && <div className="space-y-4">
+            {[{ key: "salary", label: "💼 Lương / Tiền làm thêm" }, { key: "family", label: "🏠 Tiền gia đình cấp" }, { key: "scholarship", label: "🎓 Học bổng / Thưởng" }, { key: "other", label: "✨ Nguồn thu cố định khác" }].map((item) => <div key={item.key} className="flex items-center justify-between gap-3 p-3 rounded-xl bg-slate-50 border-2 border-slate-900"><span className="text-sm font-black text-slate-800">{item.label}</span><input type="text" inputMode="numeric" value={formatInputDots(data.incomes[item.key])} onChange={(e) => setData((prev) => ({ ...prev, incomes: { ...prev.incomes, [item.key]: parseInputDots(e.target.value) } }))} placeholder="0" className="w-40 px-3 py-2 text-right rounded-lg border-2 border-slate-950 font-black tabular-nums bg-white" /></div>)}
+            <div className="p-3.5 rounded-xl bg-emerald-50 border-2 border-emerald-600 flex justify-between items-center font-black"><span>Tổng thu dự kiến tháng:</span><span className="text-lg text-emerald-700">{formatVND(stats.totalMonthlyIncome)}</span></div>
+          </div>}
+
+          {activeGadget === "limits" && <div className="space-y-3">
+            <p className="text-xs font-bold text-slate-600">Tổng các hạn mức dưới đây sẽ tạo thành <strong>Ngân sách được phép tiêu trong cả tháng</strong> để tính % Thanh Mana và Viền Báo Động:</p>
+            {CATEGORIES.map((cat) => <div key={cat.id} className="flex items-center justify-between gap-3 p-3 rounded-xl bg-slate-50 border-2 border-slate-900"><span className="text-sm font-black text-slate-800">{cat.badge} {cat.name}</span><input type="text" inputMode="numeric" value={formatInputDots(data.limits[cat.id])} onChange={(e) => setData((prev) => ({ ...prev, limits: { ...prev.limits, [cat.id]: parseInputDots(e.target.value) } }))} placeholder="0" className="w-40 px-3 py-2 text-right rounded-lg border-2 border-slate-950 font-black tabular-nums bg-white" /></div>)}
+            <div className="p-3.5 rounded-xl bg-amber-50 border-2 border-amber-500 flex justify-between items-center font-black"><span>🎯 Tổng hạn mức được tiêu cả tháng:</span><span className="text-lg text-rose-600">{formatVND(stats.monthlyBudget)}</span></div>
+          </div>}
+
+          {activeGadget === "goal" && <div className="space-y-4">
+            <div><label className="block text-xs font-black uppercase text-slate-600 mb-1">Tên mục tiêu (VD: Mua Laptop, Màn hình, Du lịch):</label><input type="text" value={data.goal.name} onChange={(e) => setData((prev) => ({ ...prev, goal: { ...prev.goal, name: e.target.value } }))} className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-950 font-black bg-white" /></div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3"><div><label className="block text-xs font-black uppercase text-slate-600 mb-1">Số tiền mục tiêu (₫):</label><input type="text" inputMode="numeric" value={formatInputDots(data.goal.target)} onChange={(e) => setData((prev) => ({ ...prev, goal: { ...prev.goal, target: parseInputDots(e.target.value) } }))} className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-950 font-black tabular-nums bg-white" /></div><div><label className="block text-xs font-black uppercase text-slate-600 mb-1">Đã tích lũy được (₫):</label><input type="text" inputMode="numeric" value={formatInputDots(data.goal.saved)} onChange={(e) => setData((prev) => ({ ...prev, goal: { ...prev.goal, saved: parseInputDots(e.target.value) } }))} className="w-full px-3.5 py-2.5 rounded-xl border-2 border-slate-950 font-black tabular-nums bg-white" /></div></div>
+            <div className="p-4 rounded-2xl bg-slate-900 text-white border-2 border-slate-950"><div className="flex justify-between text-xs font-black mb-2"><span>🛹 Tiến độ Ván Trượt Turbo: {data.goal.name}</span><span className="text-amber-300">{Math.min(100, Math.round(((data.goal.saved || 0) / Math.max(1, data.goal.target)) * 100))}%</span></div><div className="w-full h-5 rounded-full bg-slate-800 p-1 overflow-hidden"><div className="h-full rounded-full bg-gradient-to-r from-amber-400 to-rose-500 transition-all duration-500" style={{ width: `${Math.min(100, Math.round(((data.goal.saved || 0) / Math.max(1, data.goal.target)) * 100))}%` }} /></div></div>
+          </div>}
+
+          {activeGadget === "history" && <div className="space-y-2.5 max-h-96 overflow-y-auto">{data.transactions.map((tx) => {
+            const cat = CATEGORIES.find((c) => c.id === tx.category) || CATEGORIES[5];
+            return <div key={tx.id} className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border-2 border-slate-900"><div><p className="text-sm font-black">{tx.type === "income" ? "🎩" : cat.badge} {tx.note}</p><p className="text-xs font-bold text-slate-500">{tx.date} • {cat.name}</p></div><span className={`font-black tabular-nums ${tx.type === "income" ? "text-emerald-600" : "text-rose-600"}`}>{tx.type === "income" ? "+" : "-"}{formatVND(tx.amount)}</span></div>;
+          })}</div>}
+
+          {activeGadget === "ai" && <div className="space-y-4"><div className="p-4 rounded-2xl bg-rose-50 border-2 border-rose-500 text-sm font-bold text-slate-800 leading-relaxed">{aiDialogue}</div><div className="grid grid-cols-2 gap-3 text-center"><div className="p-3 rounded-xl bg-slate-100 border-2 border-slate-900"><p className="text-xs font-bold text-slate-500">Tỷ lệ đốt ngân sách tháng</p><p className="text-2xl font-black text-rose-600">{stats.spentPercent}%</p></div><div className="p-3 rounded-xl bg-slate-100 border-2 border-slate-900"><p className="text-xs font-bold text-slate-500">Ngân sách còn lại của tháng</p><p className="text-xl font-black text-emerald-600">{formatVND(stats.remainingBudget)}</p></div></div></div>}
+
+          {activeGadget === "settings" && <div className="space-y-4">
+            <div><label className="block text-xs font-black uppercase text-slate-600 mb-1">Số dư ban đầu (Tiền có sẵn trong ví/tài khoản trước tháng này):</label><input type="text" inputMode="numeric" value={formatInputDots(data.initialBalance)} onChange={(e) => setData((prev) => ({ ...prev, initialBalance: parseInputDots(e.target.value) }))} className="w-full px-4 py-3 rounded-xl border-2 border-slate-950 text-lg font-black tabular-nums bg-white" /></div>
+            <button type="button" onClick={() => { if (window.confirm("Khôi phục toàn bộ dữ liệu mẫu ban đầu của Conan Casebook?")) { setData(DEFAULT_DATA); setActiveGadget(null); } }} className="w-full py-3 rounded-xl bg-slate-200 hover:bg-rose-600 hover:text-white text-slate-800 font-black text-sm border-2 border-slate-950 transition-colors">Khôi phục dữ liệu ban đầu</button>
+          </div>}
+        </div>
+      </div>}
+    </div>
+  );
+}
+
+    const root = ReactDOM.createRoot(document.getElementById('app'));
+    root.render(<App />);
+  </script>
+  <script>if ("serviceWorker" in navigator) { window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(err => console.warn("Service worker registration failed:", err))); }</script>
+</body>
+</html>
